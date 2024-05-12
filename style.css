@@ -1,0 +1,1812 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    
+}
+body{
+    height: auto;
+    background:linear-gradient(to left, rgb(121, 236, 179),rgb(126, 189, 248));
+    background-color: aliceblue;
+    transition: all 1s ease-in-out;
+  
+    /* animation: all 10s ease-in-out; */
+
+}
+
+/* dark mood button */
+/* switch settings 👇 */
+
+.ui-switch {
+    /* switch */
+    --switch-bg: rgb(135, 150, 165);
+    --switch-width: 48px;
+    --switch-height: 20px;
+    /* circle */
+    --circle-diameter: 32px;
+    --circle-bg: rgb(0, 56, 146);
+    --circle-inset: calc((var(--circle-diameter) - var(--switch-height)) / 2);
+  }
+  
+  .ui-switch input {
+    display: none;
+  }
+  
+  .slider {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: var(--switch-width);
+    height: var(--switch-height);
+    background: var(--switch-bg);
+    border-radius: 999px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .slider .circle {
+    top: calc(var(--circle-inset) * -1);
+    left: 0;
+    width: var(--circle-diameter);
+    height: var(--circle-diameter);
+    position: absolute;
+    background: var(--circle-bg);
+    border-radius: inherit;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjAiIHdpZHRoPSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNmZmYiCiAgICAgICAgZD0iTTkuMzA1IDEuNjY3VjMuNzVoMS4zODlWMS42NjdoLTEuMzl6bS00LjcwNyAxLjk1bC0uOTgyLjk4Mkw1LjA5IDYuMDcybC45ODItLjk4Mi0xLjQ3My0xLjQ3M3ptMTAuODAyIDBMMTMuOTI3IDUuMDlsLjk4Mi45ODIgMS40NzMtMS40NzMtLjk4Mi0uOTgyek0xMCA1LjEzOWE0Ljg3MiA0Ljg3MiAwIDAwLTQuODYyIDQuODZBNC44NzIgNC44NzIgMCAwMDEwIDE0Ljg2MiA0Ljg3MiA0Ljg3MiAwIDAwMTQuODYgMTAgNC44NzIgNC44NzIgMCAwMDEwIDUuMTM5em0wIDEuMzg5QTMuNDYyIDMuNDYyIDAgMDExMy40NzEgMTBhMy40NjIgMy40NjIgMCAwMS0zLjQ3MyAzLjQ3MkEzLjQ2MiAzLjQ2MiAwIDAxNi41MjcgMTAgMy40NjIgMy40NjIgMCAwMTEwIDYuNTI4ek0xLjY2NSA5LjMwNXYxLjM5aDIuMDgzdi0xLjM5SDEuNjY2em0xNC41ODMgMHYxLjM5aDIuMDg0di0xLjM5aC0yLjA4NHpNNS4wOSAxMy45MjhMMy42MTYgMTUuNGwuOTgyLjk4MiAxLjQ3My0xLjQ3My0uOTgyLS45ODJ6bTkuODIgMGwtLjk4Mi45ODIgMS40NzMgMS40NzMuOTgyLS45ODItMS40NzMtMS40NzN6TTkuMzA1IDE2LjI1djIuMDgzaDEuMzg5VjE2LjI1aC0xLjM5eiIgLz4KPC9zdmc+");
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    -o-transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition: left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, -webkit-transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+    ;
+  }
+  
+  .slider .circle::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: inherit;
+    -webkit-transition: all 500ms;
+    -o-transition: all 500ms;
+    transition: all 500ms;
+    opacity: 0;
+  }
+  
+  /* actions */
+  
+  .ui-switch input:checked+.slider .circle {
+    left: calc(100% - var(--circle-diameter));
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjAiIHdpZHRoPSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNmZmYiCiAgICAgICAgZD0iTTQuMiAyLjVsLS43IDEuOC0xLjguNyAxLjguNy43IDEuOC42LTEuOEw2LjcgNWwtMS45LS43LS42LTEuOHptMTUgOC4zYTYuNyA2LjcgMCAxMS02LjYtNi42IDUuOCA1LjggMCAwMDYuNiA2LjZ6IiAvPgo8L3N2Zz4=");
+  }
+  
+  .ui-switch input:active+.slider .circle::before {
+    -webkit-transition: 0s;
+    -o-transition: 0s;
+    transition: 0s;
+    opacity: 1;
+    width: 0;
+    height: 0;
+  }
+/* dark mood button */
+.dark{
+    margin-left: 78rem;
+    margin-top: -2rem;
+}
+
+.hero-section{
+    
+    background-color: aliceblue;
+    margin: 10px auto;
+    width: 98%;
+    height: auto;
+    border-radius: 50px;
+    overflow: hidden;
+    
+}
+
+
+.container{
+    /* background-color: aliceblue; */
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.log{
+  background-color:  rgb(252, 139, 47);
+  margin-left:10px;
+  margin-top: 10px   ;
+  padding: 5px  8px;
+  color: white;
+  border-radius: 50%;
+
+}
+
+.logo{
+    margin-top: 1rem;
+    cursor: pointer;
+    /* border: 1px solid red; */
+    width: 299px;
+    padding-top: 16px;
+    padding-left: 10px;
+}
+.photo img{
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 300px 300px 0px 0px;
+}
+.text{
+    color:  rgb(252, 139, 47);
+    text-transform: uppercase;
+}
+.photo{
+    margin-left: 7rem;
+    padding-top: 2rem;
+}
+.textcontent{
+    position: absolute;
+    top: 3rem;
+    left: 45rem;
+    /* border: 1px solid red; */
+    width: 30rem;
+    height: 35rem;
+}
+.textcontent h1{
+    margin-left: 0rem;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 2rem;
+    font-weight: 100px;
+    font-size: 40px
+   
+    
+    
+    
+}
+.textcontent P{
+    /* margin-left: 2REM; */
+    margin-top: 1rem;
+    color: rgb(247, 127, 30);
+    
+}
+.textcontent h4{
+    margin-top: 2rem;
+    /* margin-left: 2rem; */
+    cursor: pointer;
+}
+.textcontent .p1{
+    color:black ;
+    margin-left: 0;
+    line-height: 30px;
+}
+.textcontent .A1{
+    color: rgb(252, 139, 47);
+    padding: 10PX;
+}
+.A1:hover{
+    background-color:rgb(252, 139, 47);
+    color: white;
+    text-decoration: none;
+    border-radius: 10PX 40PX 40px 10px;
+    margin-left: 30px;
+    font-weight: bold;
+    transition: all 1s;
+}
+
+
+
+.textcontent .a2{
+    width: 300px;
+    background-color:   rgb(248, 125, 24);
+    padding: 20px 50px;
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 5rem;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    border-radius: 20px 0px 20px 20px ;
+}
+.a2:hover{
+    background-color: rgb(252, 150, 26);
+}
+.textcontent strong{
+    color: rgb(0, 0, 0);
+}
+.SPACE{
+    width: 100%;
+    height: 10vh;
+}
+
+footer{
+    padding-left: 33rem;
+    padding-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.185);
+}
+@media (max-width: 2036px){
+    .photo img{
+        width: 600px;
+        height: 600px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 10.9rem;
+        padding-top: 4rem;
+    }
+    .dark{
+        margin-left: 118rem;
+        margin-top: -2rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 5rem;
+        margin-left: 3rem;
+        left: 58rem;
+        /* border: 1px solid red; */
+        width: 50rem;
+        height: 45rem;
+    }
+
+
+    .textcontent .A1{
+        color: rgb(252, 139, 47);
+        padding: 10PX;
+        font-size: 20px;
+    }
+
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    .textcontent .p1{
+        color:black ;
+        margin-left: 0;
+        line-height: 45px;
+        font-size: 20px;
+    }
+    .log{
+        background-color:  rgb(252, 139, 47);
+        margin-left:10px;
+        margin-top: 10px   ;
+        padding: 5px  8px;
+        color: white;
+        border-radius: 50%;
+        font-size: 55px;
+      
+      }
+      
+      .logo{
+          margin-top: 1rem;
+          cursor: pointer;
+          /* border: 1px solid red; */
+          width: 459px;
+          padding-top: 16px;
+          padding-left: 10px;
+          font-size: 25px;
+      }
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: auto;
+        border-radius: 50px;
+        
+        
+    }
+    .skill{
+        font-size: 20px;
+    }
+    footer{
+        margin-left: 0rem;
+        margin-top: 9rem;
+        padding-left: 53.9rem;
+        margin-bottom: 1rem;
+        border-top: 1px solid black;
+        font-size: 22px;
+        padding-top: 1rem;
+        font-size: 20px;
+    }
+    
+}
+@media (max-width: 1360px){
+
+.hero-section{
+    
+    background-color: aliceblue;
+    margin: 10px auto;
+    width: 98%;
+    height: auto;
+    border-radius: 50px;
+    overflow: hidden;
+    
+}
+.dark{
+    margin-left: 78rem;
+    margin-top: -2rem;
+}
+
+.container{
+    /* background-color: aliceblue; */
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.log{
+  background-color:  rgb(252, 139, 47);
+  margin-left:10px;
+  margin-top: 10px   ;
+  padding: 5px  8px;
+  color: white;
+  border-radius: 50%;
+  font-size: 26px;
+
+}
+
+.logo{
+    margin-top: 1rem;
+    cursor: pointer;
+    /* border: 1px solid red; */
+    width: 299px;
+    padding-top: 16px;
+    padding-left: 10px;
+    font-size: 12px;
+}
+.photo img{
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 300px 300px 0px 0px;
+}
+.text{
+    color:  rgb(252, 139, 47);
+    text-transform: uppercase;
+}
+.photo{
+    margin-left: 5rem;
+    padding-top: 2rem;
+}
+.textcontent{
+    position: absolute;
+    top: 3rem;
+    left: 41rem;
+    /* border: 1px solid red; */
+    width: 30rem;
+    height: 35rem;
+}
+.textcontent h1{
+    margin-left: 0rem;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 2rem;
+    font-weight: 100px;
+    font-size: 40px
+   
+    
+    
+    
+}
+.textcontent P{
+    /* margin-left: 2REM; */
+    margin-top: 1rem;
+    color: rgb(247, 127, 30);
+    
+}
+
+.skill{
+    font-size: 12px;
+}
+.textcontent h4{
+    margin-top: 2rem;
+    /* margin-left: 2rem; */
+    cursor: pointer;
+}
+.textcontent .p1{
+    color:black ;
+    margin-left: 0;
+    line-height: 30px;
+    font-size: 15px;
+}
+.textcontent .A1{
+    color: rgb(252, 139, 47);
+    padding: 10PX;
+    font-size: 15px;
+}
+.A1:hover{
+    background-color:rgb(252, 139, 47);
+    color: white;
+    text-decoration: none;
+    border-radius: 10PX 40PX 40px 10px;
+    margin-left: 30px;
+    font-weight: bold;
+    transition: all 1s;
+}
+
+
+
+.textcontent .a2{
+    width: 300px;
+    background-color:   rgb(248, 125, 24);
+    padding: 20px 50px;
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 5rem;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    border-radius: 20px 0px 20px 20px ;
+}
+.a2:hover{
+    background-color: rgb(252, 150, 26);
+}
+.textcontent strong{
+    color: rgb(0, 0, 0);
+}
+.SPACE{
+    width: 100%;
+    height: 10vh;
+}
+
+footer{
+    padding-left: 33rem;
+    padding-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.185);
+    font-size: 14px;
+}
+
+}
+@media (max-width: 1200px){
+    .photo img{
+        width: 450px;
+        height: 450px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 3.9rem;
+        padding-top: 4rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 5rem;
+        margin-left: 3rem;
+        left: 34rem;
+        /* border: 1px solid red; */
+        width: 30rem;
+        height: 35rem;
+    }
+
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: auto;
+        border-radius: 50px;
+        
+        
+    }
+    footer{
+        margin-left: 0rem;
+        margin-top: 9rem;
+        padding-left: 27.9rem;
+        margin-bottom: 1rem;
+        border-top: 1px solid black;
+        font-size: 22px;
+        padding-top: 1rem;
+        font-size: 15px;
+    }
+    
+}
+@media (max-width: 1100px){
+    .photo img{
+        width: 400px;
+        height: 400px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 3.9rem;
+        padding-top: 7rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 5rem;
+        margin-left: 3rem;
+        left: 30rem;
+        /* border: 1px solid red; */
+        width: 30rem;
+        height: 35rem;
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: auto;
+        border-radius: 50px;
+        
+        
+    }
+    footer{
+        margin-left: 0rem;
+        margin-top: 9rem;
+        padding-left: 27.9rem;
+        margin-bottom: 1rem;
+        border-top: 1px solid black;
+        font-size: 22px;
+        padding-top: 1rem;
+        font-size: 15px;
+    }
+    
+}
+
+
+@media (max-width: 1032px){
+    .photo img{
+        width: 350px;
+        height: 350px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 3.9rem;
+        padding-top: 8rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 5rem;
+        margin-left: 3rem;
+        left: 28rem;
+        /* border: 1px solid red; */
+        width: 30rem;
+        height: 35rem;
+    }
+
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: auto;
+        border-radius: 50px;
+        
+        
+    }
+    footer{
+        margin-left: 0rem;
+        margin-top: 9rem;
+        padding-left: 24.9rem;
+        margin-bottom: 1rem;
+        border-top: 1px solid black;
+        font-size: 22px;
+        padding-top: 1rem;
+        font-size: 15px;
+    }
+    
+}
+
+
+
+
+@media (max-width: 1024px){
+    .photo img{
+        width: 600px;
+        height: 600px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 11.9rem;
+        padding-top: 4rem;
+    }
+    .dark{
+        margin-left: 56rem;
+        margin-top: -2rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 47rem;
+        margin-left: 3rem;
+        left: 2rem;
+        /* border: 1px solid red; */
+        width: 50rem;
+        height: 35rem;
+    }
+
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: auto;
+        border-radius: 50px;
+        
+        
+    }
+    footer{
+        margin-left: 0rem;
+        margin-top: 37rem;
+        padding-left: 16.9rem;
+        margin-bottom: 1rem;
+        border-top: 1px solid black;
+        font-size: 22px;
+        padding-top: 1rem;
+    }
+    
+}
+
+@media (max-width: 912px){
+    .photo img{
+        width: 600px;
+        height: 600px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 9.9rem;
+        padding-top: 4rem;
+    }
+    .dark{
+        margin-left: 51rem;
+        margin-top: -1rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 47rem;
+        margin-left: 3rem;
+        left: 2rem;
+        /* border: 1px solid red; */
+        width: 45rem;
+        height: 35rem;
+    }
+
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: 103VH;
+        border-radius: 50px;
+        
+        
+    }
+    footer{
+        margin-left: 0rem;
+        margin-top: 37rem;
+        padding-left: 15.9rem;
+        margin-bottom: 1rem;
+        border-top: 1px solid black;
+        font-size: 22px;
+        padding-top: 1rem;
+    }
+    
+}
+
+
+@media (max-width: 853px){
+    .photo img{
+        width: 600px;
+        height: 600px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px  0px 0px;
+    }
+    .photo{
+        margin-left: 7rem;
+        padding-top: 4rem;
+    }
+    .dark{
+        margin-left: 46rem;
+        margin-top: -2rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 49rem;
+        left: 1rem;
+        /* border: 1px solid red; */
+        width: 40rem;
+        height: 35rem;
+    }
+
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .skill{
+        font-size: 12px;
+    }
+    footer{
+        margin-left: 0rem;
+       margin-top: 44rem;
+       padding-left: 3.4rem;
+       padding-top: 1rem;
+       margin-bottom: 1rem;
+       border-top: 1px solid black;
+       
+   }
+   .hero-section{
+    
+    background-color: aliceblue;
+    margin: 10px auto;
+    width: 98%;
+    height: auto;
+    border-radius: 50px;
+    
+}
+   
+}
+
+@media (max-width: 820px){
+    .photo img{
+        width: 500px;
+        height: 500px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 8.9rem;
+        padding-top: 4rem;
+    }
+    .dark{
+        margin-left: 43rem;
+        margin-top: -2rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 40rem;
+        left: 0rem;
+        /* border: 1px solid red; */
+        width: 45rem;
+        height: 35rem;
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: 113VH;
+        border-radius: 50px;
+        
+        
+    }
+    footer{
+        margin-left: 0rem;
+        margin-top: 37rem;
+        padding-left: 12.6rem;
+        margin-bottom: 1rem;
+        border-top: 1px solid black;
+        font-size: 22px;
+        padding-top: 1rem;
+    }
+    
+}
+@media (max-width: 768px){
+    .photo img{
+        width: 500px;
+        height: 500px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 7.5rem;
+        padding-top: 4rem;
+    }
+    .dark{
+        margin-left: 42rem;
+        margin-top: -2rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 40rem;
+        left: 2rem;
+        margin-left: 2rem;
+        /* border: 1px solid red; */
+        width: 37rem;
+        height: 35rem;
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: 130VH;
+        border-radius: 50px;
+        
+        
+    }
+    footer{
+        margin-left: 0rem;
+        margin-top: 37rem;
+        padding-left: 12rem;
+        margin-bottom: 1rem;
+        font-size: 20px;
+        border-top: 1px solid black;
+        padding-top: 1rem;
+    }
+    
+}
+
+@media (max-width: 553px){
+    .photo img{
+        width: 400px;
+        height: 400px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 4rem;
+        padding-top: 4rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 35rem;
+        left: 2rem;
+        /* border: 1px solid red; */
+        width: 30rem;
+        height: 35rem;
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: 189VH;
+        border-radius: 50px;
+        
+        
+    }
+    footer{
+        margin-left: 0rem;
+        margin-top: 37rem;
+        padding-left: 7.6rem;
+        margin-bottom: 1rem;
+        border-top: 1px solid black;
+        padding-top: 1rem;
+    }
+    
+}
+
+@media (max-width: 540px){
+    .photo img{
+        width: 400px;
+        height: 400px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 4rem;
+        padding-top: 4rem;
+    }
+    .dark{
+        margin-left: 28rem;
+        margin-top: -1.7rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 35rem;
+        left: 0rem;
+        /* border: 1px solid red; */
+        width: 30rem;
+        height: 35rem;
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: 169VH;
+        border-radius: 50px;
+        
+        
+    }
+    footer{
+        margin-left: 0rem;
+        margin-top: 37rem;
+        padding-left: 5.6rem;
+        margin-bottom: 1rem;
+        border-top: 1px solid black;
+        padding-top: 1rem;
+    }
+    
+}
+@media (max-width: 482px){
+    .photo img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px  0px 0px;
+    }
+    .photo{
+        margin-left: 5.7rem;
+        padding-top: 4rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 28rem;
+        left: 0rem;
+        /* border: 1px solid red; */
+        width: 24rem;
+        height: 35rem;
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .skill{
+        font-size: 12px;
+    }
+    footer{
+        margin-left: 0rem;
+       margin-top: 44rem;
+       padding-left: 6.4rem;
+       padding-top: 1rem;
+       margin-bottom: 1rem;
+       border-top: 1px solid black;
+       font-size: 15px;
+       
+   }
+   .hero-section{
+    
+    background-color: aliceblue;
+    margin: 10px auto;
+    width: 98%;
+    height: auto;
+    border-radius: 50px;
+    
+}
+   
+}
+
+@media (max-width: 430px){
+    .photo img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px  0px 0px;
+    }
+    .photo{
+        margin-left: 4rem;
+        padding-top: 4rem;
+    }
+    .dark{
+        margin-left: 22rem;
+        margin-top: -1.5rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 28rem;
+        left: -1rem;
+        /* border: 1px solid red; */
+        width: 24rem;
+        height: 35rem;
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .skill{
+        font-size: 12px;
+    }
+    footer{
+        margin-left: 0rem;
+       margin-top: 44rem;
+       padding-left: 1.4rem;
+       padding-top: 1rem;
+       margin-bottom: 1rem;
+       border-top: 1px solid black;
+       
+   }
+   .hero-section{
+    
+    background-color: aliceblue;
+    margin: 10px auto;
+    width: 98%;
+    height: auto;
+    border-radius: 50px;
+    
+}
+   
+}
+
+@media (max-width: 414px){
+    .photo img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px  0px 0px;
+    }
+    .photo{
+        margin-left: 3.3rem;
+        padding-top: 4rem;
+    }
+
+    .dark{
+        margin-left: 20rem;
+        margin-top: -1.5rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 28rem;
+        left: -1rem;
+        /* border: 1px solid red; */
+        width: 24rem;
+        height: 35rem;
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .skill{
+        font-size: 12px;
+    }
+    footer{
+        margin-left: 0rem;
+       margin-top: 44rem;
+       padding-left: 3.8rem;
+       padding-top: 1rem;
+       margin-bottom: 1rem;
+       border-top: 1px solid black;
+       font-size: 15px;
+       
+   }
+   .hero-section{
+    
+    background-color: aliceblue;
+    margin: 10px auto;
+    width: 98%;
+    height: auto;
+    border-radius: 50px;
+    
+}
+   
+}
+
+@media (max-width: 412px){
+    .photo img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 3rem;
+        padding-top: 4rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 28rem;
+        left: -1rem;
+        margin-left: 2rem;
+        /* border: 1px solid red; */
+        width: 23rem;
+        height: 35rem;
+    }
+
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: auto;
+        border-radius: 50px;
+        
+    }
+
+}
+@media (max-width: 411px){
+    .photo img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 3rem;
+        padding-top: 4rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 28rem;
+        left: 0rem;
+        margin-left: 2rem;
+        /* border: 1px solid red; */
+        width: 23rem;
+        height: 35rem;
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .skill{
+        font-size: 12px;
+    }
+    footer{
+        margin-left: 0rem;
+       margin-top: 44rem;
+       padding-left: 2.4rem;
+       padding-top: 1rem;
+       margin-bottom: 1rem;
+       border-top: 1px solid black;
+       font-size: 18px;
+       
+   }
+   .hero-section{
+    
+    background-color: aliceblue;
+    margin: 10px auto;
+    width: 98%;
+    height: auto;
+    border-radius: 50px;
+    
+}
+   
+}
+
+@media (max-width: 393px){
+    .photo img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px  0px 0px;
+    }
+    .photo{
+        margin-left: 3rem;
+        padding-top: 4rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 28rem;
+        left: -1rem;
+        /* border: 1px solid red; */
+        width: 23rem;
+        height: 35rem;
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .skill{
+        font-size: 12px;
+    }
+    footer{
+        margin-left: 0rem;
+       margin-top: 44rem;
+       padding-left: 2rem;
+       padding-top: 1rem;
+       margin-bottom: 1rem;
+       border-top: 1px solid black;
+       
+   }
+   .hero-section{
+    
+    background-color: aliceblue;
+    margin: 10px auto;
+    width: 98%;
+    height: auto;
+    border-radius: 50px;
+    
+}
+   
+}
+
+
+@media (max-width: 390px){
+    .photo img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 2.5rem;
+        padding-top: 4rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 28rem;
+        left: -1.9rem;
+        /* border: 1px solid red; */
+        padding: 10px 10px;
+        width: 24rem;
+        height: 35rem;
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .skill{
+        font-size: 12px;
+    }
+    footer{
+        margin-left: 0rem;
+       margin-top: 44rem;
+       padding-left: 1.5rem;
+       padding-top: 1rem;
+       margin-bottom: 1rem;
+       border-top: 1px solid black;
+       
+   }
+   .hero-section{
+    
+    background-color: aliceblue;
+    margin: 10px auto;
+    width: 98%;
+    height: 145vh;
+    border-radius: 50px;
+    
+}
+   
+}
+
+
+@media (max-width: 384px){
+    .photo img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 2.5rem;
+        padding-top: 4rem;
+    }
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: auto;
+        border-radius: 50px;
+        
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    footer{
+        margin-left: 0rem;
+       margin-top: 42rem;
+       padding-left: 4.5rem;
+       padding-top: 0.5rem;
+       margin-bottom: 1rem;
+       border-top: 1px solid black;
+       font-size: 12px;
+       
+   }
+   .skill{
+    font-size: 10px;
+}
+}
+
+@media (max-width: 375px){
+    .photo img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 2.2rem;
+        padding-top: 4rem;
+    }
+
+    .dark{
+        margin-left: 19rem;
+        margin-top: -1.5rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 28rem;
+        left: -1rem;
+        /* border: 1px solid red; */
+        width: 20rem;
+        height: 35rem;
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    .skill{
+        font-size: 10px;
+    }
+    footer{
+        margin-left: 0rem;
+       margin-top: 46rem;
+       padding-left: 2rem;
+       padding-top: 0.5rem;
+       margin-bottom: 1rem;
+       border-top: 1px solid black;
+       font-size: 16px;
+       
+   }
+   .hero-section{
+    
+    background-color: aliceblue;
+    margin: 10px auto;
+    width: 98%;
+    height: auto;
+    border-radius: 50px;
+    
+}
+.textcontent h1{
+    margin-left: 0rem;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 2rem;
+    font-weight: 100px;
+    font-size: 30px
+   
+    
+    
+    
+}
+   
+}
+
+
+@media (max-width: 360px){
+    .photo img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 1.6rem;
+        padding-top: 4rem;
+    }
+    .dark{
+        margin-left: 18rem;
+        margin-top: -1.7rem;
+    }
+    
+
+    .textcontent{
+        position: absolute;
+        top: 28rem;
+        left: -1rem;
+        /* border: 1px solid red; */
+        width: 20rem;
+        height: 35rem;
+    }
+    .textcontent .A1{
+        color: rgb(252, 139, 47);
+        /* margin-left: 30px; */
+    }
+    .about{
+        padding: 0px 20px;
+    }
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: auto;
+        border-radius: 50px;
+        
+    }
+    .textcontent h1{
+        margin-left: 0rem;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 2rem;
+        font-weight: 100px;
+        font-size: 30px
+       
+        
+        
+        
+    }
+
+    .skill{
+        font-size: 10px;
+    }
+    .textcontent .a2{
+        width: 300px;
+        background-color:   rgb(248, 125, 24);
+        padding: 20px 50px;
+        font-size: 35px;
+        font-weight: bold;
+        margin-top: 5rem;
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        border-radius: 20px 0px 20px 20px ;
+        
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+
+    footer{
+         margin-left: 0rem;
+        margin-top: 42rem;
+        padding-left: 2rem;
+        padding-top: 0.5rem;
+        margin-bottom: 1rem;
+        border-top: 1px solid black;
+        
+    }
+    
+}
+@media (max-width: 344px){
+    .photo img{
+        width: 300px;
+        height: 300px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 1.1rem;
+        padding-top: 4rem;
+    }
+    .dark{
+        margin-left: 17rem;
+        margin-top: -1.6rem;
+    }
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: 133vh;
+        border-radius: 50px;
+        
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+    footer{
+        margin-left: 0rem;
+       margin-top: 42rem;
+       padding-left: 1.5rem;
+       padding-top: 0.5rem;
+       margin-bottom: 1rem;
+       border-top: 1px solid black;
+       
+   }
+   .skill{
+    font-size: 10px;
+}
+}
+@media (max-width: 320px){
+    .photo img{
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px 0px 0px;
+    }
+    .photo{
+        margin-left: 2rem;
+        padding-top: 4rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 24rem;
+        left: -2rem;
+        /* border: 1px solid red; */
+        font-size: 15px;
+        width: 20rem;
+        height: 35rem;
+    }
+    .dark{
+        margin-left: 16rem;
+        margin-top: -1.6rem;
+    }
+    .hero-section{
+    
+        background-color: aliceblue;
+        margin: 10px auto;
+        width: 98%;
+        height: auto;
+        border-radius: 50px;
+        
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+     footer{
+        margin-left: 0rem;
+       margin-top: 42rem;
+       padding-left: 1.9rem;
+       padding-top: 0.5rem;
+       margin-bottom: 1rem;
+       border-top: 1px solid black;
+       font-size: 13px;
+       
+   }
+   .skill{
+    font-size: 10px;
+}
+
+
+}
+
+@media (max-width: 298px){
+    .photo img{
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        cursor: pointer;
+        border-radius: 300px 300px  0px 0px;
+    }
+    .photo{
+        margin-left: 1.5rem;
+        padding-top: 4rem;
+    }
+    .textcontent{
+        position: absolute;
+        top: 25rem;
+        left: -2rem;
+        /* border: 1px solid red; */
+        width: 18rem;
+        height: 35rem;
+    }
+
+    .textcontent .p1{
+        /* margin-left: 2REM; */
+        margin-top: 1rem;
+        /* color: rgb(247, 127, 30); */
+        font-size: 12px;
+        
+    }
+    .A1:hover{
+        background-color:rgb(252, 139, 47);
+        color: white;
+        text-decoration: none;
+        border-radius: 10PX 40PX 40px 10px;
+        margin-left: 30px;
+        font-weight: bold;
+        transition: all 1s;
+    }
+    
+
+    .skill{
+        font-size: 10px;
+    }
+    footer{
+        margin-left: 0rem;
+       margin-top: 44rem;
+       padding-left: 1.4rem;
+       padding-top: 1rem;
+       margin-bottom: 1rem;
+       border-top: 1px solid black;
+       
+   }
+   .hero-section{
+    
+    background-color: aliceblue;
+    margin: 10px auto;
+    width: 98%;
+    height: auto;
+    border-radius: 50px;
+    
+}
+   
+}
